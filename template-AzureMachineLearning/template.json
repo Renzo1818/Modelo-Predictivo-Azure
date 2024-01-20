@@ -1,0 +1,149 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaces_testazuredsml_name": {
+            "defaultValue": "testazuredsml",
+            "type": "String"
+        },
+        "storageAccounts_testazuredsml0639172309_externalid": {
+            "defaultValue": "/subscriptions/d314e485-fce8-4574-8521-21fbbe037b1c/resourceGroups/testAzure/providers/Microsoft.Storage/storageAccounts/testazuredsml0639172309",
+            "type": "String"
+        },
+        "vaults_testazuredsml9717944983_externalid": {
+            "defaultValue": "/subscriptions/d314e485-fce8-4574-8521-21fbbe037b1c/resourceGroups/testAzure/providers/Microsoft.Keyvault/vaults/testazuredsml9717944983",
+            "type": "String"
+        },
+        "components_testazuredsml1703754409_externalid": {
+            "defaultValue": "/subscriptions/d314e485-fce8-4574-8521-21fbbe037b1c/resourceGroups/testAzure/providers/Microsoft.insights/components/testazuredsml1703754409",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces",
+            "apiVersion": "2023-10-01",
+            "name": "[parameters('workspaces_testazuredsml_name')]",
+            "location": "brazilsouth",
+            "sku": {
+                "name": "Basic",
+                "tier": "Basic"
+            },
+            "kind": "Default",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "friendlyName": "[parameters('workspaces_testazuredsml_name')]",
+                "storageAccount": "[parameters('storageAccounts_testazuredsml0639172309_externalid')]",
+                "keyVault": "[parameters('vaults_testazuredsml9717944983_externalid')]",
+                "applicationInsights": "[parameters('components_testazuredsml1703754409_externalid')]",
+                "hbiWorkspace": false,
+                "managedNetwork": {
+                    "isolationMode": "Disabled"
+                },
+                "v1LegacyMode": false,
+                "publicNetworkAccess": "Enabled",
+                "discoveryUrl": "https://brazilsouth.api.azureml.ms/discovery"
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/computes",
+            "apiVersion": "2023-10-01",
+            "name": "[concat(parameters('workspaces_testazuredsml_name'), '/demo1')]",
+            "location": "brazilsouth",
+            "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_testazuredsml_name'))]"
+            ],
+            "properties": {
+                "disableLocalAuth": true,
+                "computeLocation": "brazilsouth"
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/datastores",
+            "apiVersion": "2023-10-01",
+            "name": "[concat(parameters('workspaces_testazuredsml_name'), '/azureml_globaldatasets')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_testazuredsml_name'))]"
+            ],
+            "properties": {
+                "credentials": {
+                    "credentialsType": "Sas",
+                    "secrets": {}
+                }
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/datastores",
+            "apiVersion": "2023-10-01",
+            "name": "[concat(parameters('workspaces_testazuredsml_name'), '/testazuredl')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_testazuredsml_name'))]"
+            ],
+            "properties": {
+                "credentials": {
+                    "credentialsType": "AccountKey",
+                    "secrets": {}
+                }
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/datastores",
+            "apiVersion": "2023-10-01",
+            "name": "[concat(parameters('workspaces_testazuredsml_name'), '/workspaceartifactstore')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_testazuredsml_name'))]"
+            ],
+            "properties": {
+                "credentials": {
+                    "credentialsType": "AccountKey",
+                    "secrets": {}
+                }
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/datastores",
+            "apiVersion": "2023-10-01",
+            "name": "[concat(parameters('workspaces_testazuredsml_name'), '/workspaceblobstore')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_testazuredsml_name'))]"
+            ],
+            "properties": {
+                "credentials": {
+                    "credentialsType": "AccountKey",
+                    "secrets": {}
+                }
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/datastores",
+            "apiVersion": "2023-10-01",
+            "name": "[concat(parameters('workspaces_testazuredsml_name'), '/workspacefilestore')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_testazuredsml_name'))]"
+            ],
+            "properties": {
+                "credentials": {
+                    "credentialsType": "AccountKey",
+                    "secrets": {}
+                }
+            }
+        },
+        {
+            "type": "Microsoft.MachineLearningServices/workspaces/datastores",
+            "apiVersion": "2023-10-01",
+            "name": "[concat(parameters('workspaces_testazuredsml_name'), '/workspaceworkingdirectory')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.MachineLearningServices/workspaces', parameters('workspaces_testazuredsml_name'))]"
+            ],
+            "properties": {
+                "credentials": {
+                    "credentialsType": "AccountKey",
+                    "secrets": {}
+                }
+            }
+        }
+    ]
+}
