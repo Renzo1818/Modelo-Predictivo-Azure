@@ -1,5 +1,5 @@
-## DISEÑO DE UN MODELO PREDICTIVO: APROBACIÓN DE PRESTAMOS MONETARIOS
-El presente proyecto tiene como objetivo diseñar un modelo predictivo para hallar si ciertos clientes de una entidad financiera son aptos para recibir un prestamo monetario. Se realizó bajo la arquitectura de aprendiza automático de Azure.
+## DISEÑO DE UN MODELO PREDICTIVO: APROBACIÓN DE PRÉSTAMOS MONETARIOS
+El presente proyecto tiene como objetivo diseñar un modelo predictivo para hallar si ciertos clientes de una entidad financiera son aptos para recibir un préstamo monetario. Se realizó bajo la arquitectura de aprendiza automático de Azure.
 
 #### AZURE DATA FACTORY: INGESTA Y ORQUESTADOR DE PROCESOS
 
@@ -27,7 +27,7 @@ Diseño de un Data Lakehouse para almacenar los conjuntos de datos en su formato
 ![DATABRICKS PRESTAMOS](https://github.com/Renzo1818/Modelo-Predictivo-Azure/assets/93232895/fc004f4e-5cd4-42f1-9088-49c7f3793e66)
 
 #### AZURE MACHINE LEARNING
-Diseño de un modelo predictivo para hallar si ciertos clientes de una entidad financiera son aptos para recibir un prestamo monetario utilizando el algoritmo "Árbol de decisiones" para el entrenamiento del modelo.
+Diseño de un modelo predictivo para hallar si ciertos clientes de una entidad financiera son aptos para recibir un préstamo monetario utilizando el algoritmo "Árbol de decisiones" para el entrenamiento del modelo.
 
 - Modelo entrenado: Árbol de decision - Prestamos
 
